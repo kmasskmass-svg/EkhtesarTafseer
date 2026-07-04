@@ -34,14 +34,14 @@ html[data-theme="dark"]{
 html,body{margin:0;padding:0}
 body{font-family:var(--body-font);background:radial-gradient(1200px 600px at 50% -10%,var(--bg-grad) 0%,transparent 60%),var(--parchment);
   color:var(--ink);line-height:var(--lh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background .3s,color .3s;}
-.topbar{position:sticky;top:0;z-index:40;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 18px;
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;
   background:linear-gradient(180deg,var(--maroon),var(--maroon-deep));color:#F6E6C8;border-bottom:3px solid var(--gold);
   box-shadow:0 4px 18px rgba(40,12,16,.35);}
-.tb-side{display:flex;align-items:center;gap:8px;min-width:0}
+.tb-side{display:flex;align-items:center;gap:8px;min-width:0;flex:none}
 .tb-side.tb-end{justify-content:flex-end}
 .tb-side.tb-start{justify-content:flex-start}
 html[data-theme="green"] .topbar,html[data-theme="dark"] .topbar{color:#101010}
-.brand{display:flex;flex-direction:column;line-height:1.25;min-width:0;text-align:center;align-items:center;justify-self:center;max-width:min(48vw,640px)}
+.brand{display:flex;flex-direction:column;line-height:1.25;min-width:0;text-align:center;align-items:center;flex:1 1 auto;overflow:hidden;max-width:min(48vw,640px)}
 .brand b{font-family:var(--head-font);font-weight:700;font-size:1.3rem;color:#FBEFD6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 html[data-theme="green"] .brand b,html[data-theme="dark"] .brand b{color:#1a1208}
 .brand span{font-size:.7rem;color:#E7C98E;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -79,7 +79,7 @@ html[data-theme="green"] .tb-btn,html[data-theme="dark"] .tb-btn{color:#1a1208;b
 .search-wrap .sicon{position:absolute;right:11px;color:var(--maroon);pointer-events:none}
 .shell{display:block}
 .sidebar{position:fixed;top:60px;bottom:0;right:0;left:auto;width:min(86vw,330px);z-index:60;
-  transform:translateX(105%);transition:transform .25s ease;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  transform:translateX(105%);transition:transform .18s ease-out;overflow-y:auto;-webkit-overflow-scrolling:touch;will-change:transform;
   background:var(--paper);border-inline-start:1px solid var(--gold);box-shadow:-10px 0 30px var(--shadow);padding:8px 0 40px;
   contain:layout paint;}
 .sidebar.open{transform:translateX(0)}
@@ -150,7 +150,7 @@ html[data-theme="green"] .sel-pill button,html[data-theme="dark"] .sel-pill butt
   padding:20px;overflow:auto;}
 .modal.open{display:flex}
 .modal-inner{background:var(--paper);border-radius:16px;max-width:640px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.45);
-  padding:20px;display:flex;flex-direction:column;gap:16px;max-height:92vh;}
+  padding:20px;display:flex;flex-direction:column;gap:16px;max-height:94vh;overflow-y:auto;}
 .modal-inner h3{font-family:"ReemKufi";color:var(--maroon);margin:0;font-size:1.15rem}
 .modal-actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn{font-family:"ReemKufi";font-size:.92rem;cursor:pointer;border-radius:10px;padding:9px 16px;border:1px solid var(--gold);
@@ -170,7 +170,21 @@ html[data-theme="green"] .btn,html[data-theme="dark"] .btn{color:#1a1208}
 .range-row{display:flex;align-items:center;gap:12px}
 .range-row input[type=range]{flex:1;accent-color:var(--maroon)}
 .range-val{font-family:"ReemKufi";min-width:46px;text-align:center;color:var(--maroon);font-weight:700}
-.card-scroll{overflow:auto;display:flex;justify-content:center;align-items:flex-start}
+.card-scroll{display:flex;justify-content:center;align-items:flex-start;flex:none}
+.card-fit-wrap{transform-origin:top center;transition:transform .12s ease-out}
+.card-modal-layout{overflow:hidden;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:14px;margin:0 -4px;padding:2px 4px}
+.card-modal-controls{display:flex;flex-direction:column;gap:14px;flex:none;max-height:42vh;overflow-y:auto;padding:2px 4px}
+.card-modal-preview{display:flex;justify-content:center;align-items:flex-start;flex:1 1 auto;min-height:180px;overflow:auto}
+#cardModal .modal-inner{max-width:min(96vw,1040px)}
+@media (min-width:820px){
+  #cardModal .modal-inner{width:min(96vw,1040px)}
+  .card-modal-layout{flex-direction:row;align-items:stretch;overflow:hidden}
+  .card-modal-controls{flex:0 0 250px;max-height:none;overflow-y:auto;padding-inline-end:14px;border-inline-end:1px solid var(--rule)}
+  .card-modal-controls .card-tools{flex-direction:column;align-items:stretch;gap:12px}
+  .card-modal-controls .card-tools label{width:100%}
+  .card-modal-controls .csize-ctrl{flex-wrap:wrap}
+  .card-modal-preview{flex:1 1 auto;overflow:auto;min-width:0;padding-inline-start:6px}
+}
 /* ===== Improved illuminated card ===== */
 .qcard{--cd-bg:linear-gradient(160deg,#FCF6E7 0%,#F6EBD0 55%,#EFE0BD 100%);--cd-bg2:#F4E8CC;--cd-frame:#C9A24B;--cd-frame-soft:rgba(182,137,47,.55);
   --cd-title:#6E1B22;--cd-accent:#9A7426;--cd-text:#33281A;--cd-verse:#6E1B22;--cd-note:#5A4D3A;--cd-font:var(--body-font);
@@ -233,23 +247,46 @@ html[data-theme="green"] .btn,html[data-theme="dark"] .btn{color:#1a1208}
 .qcard[data-cframe="luxe"] .qc-nib.n-mr{top:50%;right:5px;margin-top:-13px;transform:rotate(-90deg)}
 .qcard[data-cframe="luxe"] .qc-star{display:block;position:absolute;bottom:18px;left:18px;width:42px;height:42px;color:var(--cd-frame);opacity:.8;z-index:3}
 .qcard .foot-orn{display:block;width:120px;max-width:55%;height:auto;margin:14px auto 0;color:var(--cd-frame);opacity:.9}
-.qcard .body{position:relative;z-index:2;font-size:calc(1.2rem*var(--cd-scale,1));line-height:1.95;text-align:center;color:var(--cd-text);word-wrap:break-word;overflow-wrap:anywhere}
-.qcard .body .font-uthmani,.qcard .body .font-KFGQPC_Uthmanic_Script_HAFS{color:var(--cd-verse);line-height:2.0;font-size:calc(1.3rem*var(--cd-scale,1))}
-.qcard.len-l .body{font-size:calc(1.08rem*var(--cd-scale,1));line-height:2.05}.qcard.len-l .body .font-uthmani{font-size:calc(1.16rem*var(--cd-scale,1))}
-.qcard.len-xl .body{font-size:calc(.98rem*var(--cd-scale,1));line-height:1.95}.qcard.len-xl .body .font-uthmani{font-size:calc(1.05rem*var(--cd-scale,1))}
+.qcard .body{position:relative;z-index:2;font-size:var(--cd-fontpx,19px);line-height:1.95;text-align:center;color:var(--cd-text);word-wrap:break-word;overflow-wrap:anywhere}
+.qcard .body .font-uthmani,.qcard .body .font-KFGQPC_Uthmanic_Script_HAFS{color:var(--cd-verse);line-height:2.0;font-size:calc(var(--cd-fontpx,19px)*1.083)}
+.qcard.len-l .body{line-height:2.05}
+.qcard.len-xl .body{line-height:1.95}
 .qcard .cnote{margin-top:16px;padding-top:12px;border-top:1px solid var(--cd-frame-soft);font-family:var(--cd-font);
-  font-size:calc(.84rem*var(--cd-scale,1));line-height:1.75;color:var(--cd-note);text-align:right}
+  font-size:calc(var(--cd-fontpx,19px)*0.7);line-height:1.75;color:var(--cd-note);text-align:right}
 .qcard .cnote .cnote-h{display:block;font-family:var(--head-font);color:var(--cd-accent);font-size:.82rem;margin-bottom:4px;text-align:center}
 .qcard .cnote .cnote-item{margin-bottom:6px}.qcard .cnote .cnote-item:last-child{margin-bottom:0}
-.qcard.len-l .cnote{font-size:.78rem}.qcard.len-xl .cnote{font-size:.72rem}
 .qcard .corner{position:absolute;width:30px;height:30px;color:var(--cd-frame);font-size:22px;line-height:1;text-align:center;z-index:3}
 .qcard .corner.tr{top:5px;right:7px}.qcard .corner.tl{top:5px;left:7px}.qcard .corner.br{bottom:5px;right:7px}.qcard .corner.bl{bottom:5px;left:7px}
+/* زخارف الخلفية الاختيارية */
+.qcard .qc-pattern{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.16;background-repeat:repeat;background-position:center}
+.qcard[data-cpattern="none"] .qc-pattern{display:none}
+.qcard[data-cpattern="dots"] .qc-pattern{background-image:radial-gradient(currentColor 1.2px,transparent 1.2px);background-size:16px 16px;color:var(--cd-frame)}
+.qcard[data-cpattern="grid"] .qc-pattern{background-image:linear-gradient(currentColor 1px,transparent 1px),linear-gradient(90deg,currentColor 1px,transparent 1px);background-size:22px 22px;color:var(--cd-frame);opacity:.10}
+.qcard[data-cpattern="star8"] .qc-pattern{color:var(--cd-frame);opacity:.14;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='none' stroke='%23C9A24B' stroke-width='1'%3E%3Crect x='9' y='9' width='26' height='26'/%3E%3Crect x='9' y='9' width='26' height='26' transform='rotate(45 22 22)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:44px 44px;filter:none}
+.qcard[data-cpattern="star8"][data-ctheme="dark"] .qc-pattern,.qcard[data-cpattern="star8"][data-ctheme="green"] .qc-pattern{opacity:.2}
+.qcard .inner,.qcard .head,.qcard .body,.qcard .cnote,.qcard .qc-ref{position:relative;z-index:2}
+/* شارة السورة والآية */
+.qcard .qc-ref{display:flex;align-items:center;justify-content:center;gap:8px;margin:2px auto 14px;font-family:var(--head-font);
+  font-size:calc(var(--cd-fontpx,19px)*0.77);color:var(--cd-title);font-weight:700}
+.qcard .qc-ref .qc-ref-ic{color:var(--cd-accent);font-size:.85em}
+.qcard .qc-ref[data-empty="1"]{display:none}
+/* إتاحة التحرير المباشر للمحتوى */
+.qcard .body[contenteditable="true"],.qcard .cnote[contenteditable="true"]{cursor:text;outline:none;border-radius:6px;transition:box-shadow .15s,background-color .15s;padding:4px 6px;margin:-4px -6px}
+.qcard .body[contenteditable="true"]:hover,.qcard .cnote[contenteditable="true"]:hover{background-color:rgba(0,0,0,.035)}
+.qcard .body[contenteditable="true"]:focus,.qcard .cnote[contenteditable="true"]:focus{background-color:rgba(0,0,0,.05)}
+.qcard .body[contenteditable="true"]:empty::before{content:"اكتب هنا…";opacity:.45}
+.qcard .body[contenteditable="true"]:focus,.qcard .cnote[contenteditable="true"]:focus{box-shadow:0 0 0 2px var(--cd-frame-soft)}
+.card-edit-hint{text-align:center;font-size:.8rem;color:var(--ink-soft);margin:-4px 0 10px;opacity:.85}
 .card-tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:12px}
 .card-tools label{display:flex;flex-direction:column;gap:3px;font-size:.78rem;color:var(--ink-soft)}
 .card-tools .ex-select{font-size:.88rem;padding:6px 8px}
-.csize-ctrl{display:inline-flex;gap:4px}
+.csize-ctrl{display:inline-flex;align-items:center;gap:6px}
 .csize-ctrl button{font-family:var(--head-font);font-size:.95rem;min-width:34px;padding:6px 8px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--maroon);cursor:pointer}
 .csize-ctrl button:active{transform:scale(.96)}
+.csize-ctrl input[type=range]{width:120px;accent-color:var(--maroon)}
+.csize-ctrl .csize-val{font-family:"ReemKufi";min-width:30px;text-align:center;color:var(--maroon);font-weight:700;font-size:.85rem}
 .empty-note{color:var(--ink-soft);font-size:.95rem;text-align:center;padding:30px;line-height:1.9}
 .err-note{color:#8a1c1c;background:#fdeaea;border:1px solid #e7b7b7;border-radius:10px;padding:16px;margin:20px;white-space:pre-wrap}
 .menu-toggle{display:inline-flex}
@@ -329,7 +366,7 @@ html[data-theme="green"] .help-fab,html[data-theme="dark"] .help-fab{color:#1a12
   .main{padding:0 12px}.brand span{display:none}
   .search-wrap input{width:120px}.topbar{gap:7px;padding:8px 10px}.btn-text{display:none}.tb-btn,.tb-btn.icon{padding:9px 10px}
   .reader{padding:20px 0 90px}.toc-item{padding:12px 16px;font-size:1rem}
-  .sel-pill{bottom:auto!important;top:calc(env(safe-area-inset-top,0px) + 62px)!important;left:50%!important;right:auto!important;transform:translateX(-50%);
+  .sel-pill{top:auto!important;bottom:calc(env(safe-area-inset-bottom,0px) + 16px)!important;left:50%!important;right:auto!important;transform:translateX(-50%);
     padding:10px 14px;box-shadow:0 10px 30px rgba(40,12,16,.5)}
   .sel-pill button{font-size:.95rem;padding:6px 10px}
 }
@@ -352,6 +389,22 @@ html[data-theme="green"] .help-fab,html[data-theme="dark"] .help-fab{color:#1a12
 }
 button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 @media (max-width:520px){.cover h1{font-size:1.7rem}.qcard{max-width:90vw;min-width:0}.qcard .body{font-size:1.05rem}.qcard .body .font-uthmani{font-size:1.15rem}.qcard .inner{padding:22px 20px 22px}}
+@media (max-width:819px){
+  #cardModal h3{font-size:1rem;margin-bottom:2px}
+  .card-modal-controls{gap:6px;max-height:34vh}
+  .card-tools{gap:5px 8px;margin-bottom:0}
+  .card-tools label{font-size:.66rem;gap:1px}
+  .card-tools .ex-select{font-size:.78rem;padding:4px 7px;border-radius:7px}
+  #cardWoodWrap select{padding:4px 7px}
+  .csize-ctrl{gap:4px}
+  .csize-ctrl button{min-width:24px;padding:3px 5px;font-size:.78rem;border-radius:6px}
+  .csize-ctrl input[type=range]{width:74px}
+  .csize-ctrl .csize-val{font-size:.72rem;min-width:20px}
+  #cardAyah{width:78px!important}
+  .card-edit-hint{font-size:.66rem;margin:0 0 2px;line-height:1.3}
+  #cardModal .modal-actions{gap:6px}
+  #cardModal .modal-actions .btn{font-size:.82rem;padding:7px 11px}
+}
 @media print{.topbar,.sidebar,.sel-pill,.modal,.menu-toggle,.fn-pop{display:none!important}.main{padding:0}.reader{max-width:none;padding:0}body{background:#fff;color:#000}}
 </style>
 </head>
@@ -475,6 +528,8 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
 </div></div>
 <div class="modal" id="cardModal"><div class="modal-inner">
   <h3>بطاقة المقطع المظلَّل</h3>
+  <div class="card-modal-layout">
+  <div class="card-modal-controls">
   <div class="card-tools">
     <label>اللون
       <select id="cardTheme" class="ex-select">
@@ -512,10 +567,25 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
         <option value="#4a1f18">محمرّ</option>
         <option value="#241a16">فاحم</option>
       </select></label>
+    <label>زخرفة الخلفية
+      <select id="cardPattern" class="ex-select">
+        <option value="none">بلا زخرفة</option>
+        <option value="star8">نجمة ثمانية</option>
+        <option value="dots">منقّط</option>
+        <option value="grid">شبكيّ</option>
+      </select></label>
     <label>حجم الخط
-      <span class="csize-ctrl"><button type="button" id="cardFontDec" title="تصغير">أ−</button><button type="button" id="cardFontInc" title="تكبير">أ+</button></span></label>
+      <span class="csize-ctrl"><button type="button" id="cardFontDec" title="تصغير">أ−</button><input type="range" id="cardFontRange" min="6" max="60" step="1" value="19"><span class="csize-val" id="cardFontVal">١٩</span><button type="button" id="cardFontInc" title="تكبير">أ+</button></span></label>
   </div>
-  <div class="card-scroll"><div class="qcard" id="qcard" dir="rtl">
+  <div class="card-tools">
+    <label>السورة (اختياري)
+      <select id="cardSura" class="ex-select"><option value="0">بلا</option></select></label>
+    <label>رقم الآية
+      <input type="text" inputmode="numeric" id="cardAyah" class="ex-select" placeholder="مثال: ٢٥٥" style="width:100px"></label>
+  </div>
+  <p class="card-edit-hint">💡 يمكنك النقر داخل نصّ البطاقة أو حاشيتها لتعديله أو الإضافة إليه قبل التصدير.</p>
+  </div>
+  <div class="card-modal-preview"><div class="card-scroll"><div class="card-fit-wrap" id="cardFitWrap"><div class="qcard" id="qcard" dir="rtl">
     <div class="ornate"></div>
     <span class="corner tr">۞</span><span class="corner tl">۞</span><span class="corner br">۞</span><span class="corner bl">۞</span>
     <svg class="qc-nib n-tl" viewBox="0 0 28 40" xmlns="http://www.w3.org/2000/svg"><path d="M14 1 C8 9 4 18 4 26 C4 33 9 39 14 39 C19 39 24 33 24 26 C24 18 20 9 14 1 Z" fill="currentColor"/><path d="M14 15 L14 34" stroke="var(--cd-bg2)" stroke-width="1.5"/><circle cx="14" cy="13" r="2.3" fill="var(--cd-bg2)"/></svg>
@@ -524,14 +594,17 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
     <svg class="qc-nib n-mr" viewBox="0 0 28 40" xmlns="http://www.w3.org/2000/svg"><path d="M14 1 C8 9 4 18 4 26 C4 33 9 39 14 39 C19 39 24 33 24 26 C24 18 20 9 14 1 Z" fill="currentColor"/><path d="M14 15 L14 34" stroke="var(--cd-bg2)" stroke-width="1.5"/><circle cx="14" cy="13" r="2.3" fill="var(--cd-bg2)"/></svg>
     <svg class="qc-star" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="14" y="14" width="32" height="32"/><rect x="14" y="14" width="32" height="32" transform="rotate(45 30 30)"/><circle cx="30" cy="30" r="6"/></svg>
     <div class="inner">
+      <div class="qc-pattern"></div>
       <svg class="qc-wm" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="100" cy="100" r="86"/><circle cx="100" cy="100" r="72"/></g><polygon points="100,22 113,87 178,100 113,113 100,178 87,113 22,100 87,87" fill="currentColor" stroke="none"/><circle cx="100" cy="100" r="9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
       <div class="head"><span class="h-lead">فوائد من كتاب</span><span class="h-title">الاختصار والجمع والتكميل</span><span class="h-auth">كليب بن أحمد الزهراني</span><svg class="qc-orn" viewBox="0 0 170 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><g stroke-width="1"><rect x="74" y="6" width="12" height="12"/><rect x="74" y="6" width="12" height="12" transform="rotate(45 80 12)"/></g><path d="M74 12 q-18 -11 -34 0 q15 11 34 0"/><path d="M40 12 q-12 1 -20 -5 M40 12 q-12 -1 -20 5"/><path d="M96 12 q18 -11 34 0 q-15 11 -34 0"/><path d="M130 12 q12 1 20 -5 M130 12 q12 -1 20 5"/><circle cx="18" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="152" cy="12" r="2" fill="currentColor" stroke="none"/></svg></div>
-      <div class="body" id="cardBody"></div>
-      <div class="cnote" id="cardNote" style="display:none"></div>
+      <div class="qc-ref" id="cardRef" data-empty="1"><span class="qc-ref-ic">﴿</span><span id="cardRefText"></span><span class="qc-ref-ic">﴾</span></div>
+      <div class="body" id="cardBody" contenteditable="true" spellcheck="false"></div>
+      <div class="cnote" id="cardNote" contenteditable="true" spellcheck="false" style="display:none"></div>
       <svg class="foot-orn" viewBox="0 0 170 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><g stroke-width="1"><rect x="74" y="6" width="12" height="12"/><rect x="74" y="6" width="12" height="12" transform="rotate(45 80 12)"/></g><path d="M74 12 q-18 -11 -34 0 q15 11 34 0"/><path d="M96 12 q18 -11 34 0 q-15 11 -34 0"/><circle cx="40" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="120" cy="12" r="1.8" fill="currentColor" stroke="none"/></svg>
       <svg class="qc-seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="waxg" cx="40%" cy="34%" r="72%"><stop offset="0%" stop-color="#9c4f3c"/><stop offset="58%" stop-color="#7c3025"/><stop offset="100%" stop-color="#561e16"/></radialGradient></defs><circle cx="40" cy="40" r="36" fill="url(#waxg)"/><circle cx="40" cy="40" r="30" fill="none" stroke="rgba(255,236,205,.4)" stroke-width="1.4" stroke-dasharray="2 3"/><polygon points="40,18 45,36 62,40 45,44 40,62 35,44 18,40 35,36" fill="rgba(255,236,205,.55)"/></svg>
     </div>
-  </div></div>
+  </div></div></div></div>
+  </div>
   <div class="modal-actions"><button class="btn" id="shareCard">📤 مشاركة</button><button class="btn" id="downloadCard">⬇️ تنزيل PNG</button><button class="btn ghost" data-close>إغلاق</button></div>
 </div></div>
 <div class="modal" id="settingsModal"><div class="modal-inner">
@@ -964,15 +1037,19 @@ window.__BOOK_B64__ = "H4sIABvSO2oC/+y9a29jWZYl9leuw19sYEIdke+U0wV4Big3MB57Bj3+l
     document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open');});});
 
     /* ---- selection -> card ---- */
-    var pill=document.getElementById('selPill'),lastRange=null;
+    var pill=document.getElementById('selPill'),lastRange=null,selT=null;
+    function showPillNow(){var sel=document.getSelection();if(!sel||sel.isCollapsed||!sel.toString().trim()||!lastRange){pill.style.display='none';return;}
+      pill.style.display='flex';}
     document.addEventListener('selectionchange',function(){var sel=document.getSelection();
+      if(selT)clearTimeout(selT);
       if(!sel||sel.isCollapsed||!sel.toString().trim()){pill.style.display='none';lastRange=null;return;}
       var a=sel.anchorNode,node=a?(a.nodeType===3?a.parentNode:a):null;
       var inReader=node&&reader.contains(node), inPop=node&&window.__fnPop&&window.__fnPop.contains(node);
       if(!inReader&&!inPop){pill.style.display='none';return;}
-      lastRange=sel.getRangeAt(0).cloneRange();});
-    function pp(){setTimeout(function(){var sel=document.getSelection();if(!sel||sel.isCollapsed||!sel.toString().trim()||!lastRange){pill.style.display='none';return;}
-      pill.style.display='flex';},10);}
+      lastRange=sel.getRangeAt(0).cloneRange();
+      /* أظهر الشريط فور استقرار التحديد، دون انتظار رفع الإصبع (مهمّ للتحديد باللمس عبر مقابض السحب) */
+      selT=setTimeout(showPillNow,220);});
+    function pp(){setTimeout(showPillNow,10);}
     document.addEventListener('mouseup',pp);document.addEventListener('touchend',pp);
     document.getElementById('copyBtn').addEventListener('click',function(){var sel=document.getSelection();var t=sel?sel.toString():'';if(t&&navigator.clipboard)navigator.clipboard.writeText(t).catch(function(){});pill.style.display='none';});
     var cardModal=document.getElementById('cardModal'),cardBody=document.getElementById('cardBody');
@@ -990,52 +1067,134 @@ window.__BOOK_B64__ = "H4sIABvSO2oC/+y9a29jWZYl9leuw19sYEIdke+U0wV4Big3MB57Bj3+l
         ids.forEach(function(id){h+='<div class="cnote-item">'+(B.footnotes[id]||'')+'</div>';});
         note.innerHTML=h;note.style.display='block';}
       else{note.style.display='none';note.innerHTML='';}
+      recalcLen();
+      updateRef();
+      arabizeEditableDigits(cardBody);arabizeEditableDigits(document.getElementById('cardNote'));
+      pill.style.display='none';if(window.__closeSidebar)window.__closeSidebar();ready().then(function(){cardModal.classList.add('open');preRenderCard();fitCardPreview();});});
+    /* ---- تصغير المعاينة بصريًا فقط (دون التأثير على جودة التصدير) لتظهر البطاقة كاملة
+       داخل مساحتها المخصّصة قدر الإمكان. يتوقّف هذا التصغير تمامًا أثناء الكتابة الفعلية
+       داخل البطاقة (النص يعود لحجمه الطبيعي كاملًا ليسهل التحرير)، ويُعاد تفعيله بعد
+       الانتهاء من الكتابة. كما لا يقلّ التصغير عن حدّ أدنى يضمن بقاء النص مقروءًا وقابلًا
+       للنقر، ولا يتأثر بظهور لوحة مفاتيح الجوال (تُتجاهل تغيّرات الارتفاع فقط دون تغيّر العرض) ---- */
+    var cardFitWrap=document.getElementById('cardFitWrap'),cardEditing=false,MIN_FIT_SCALE=0.55;
+    function fitCardPreview(){
+      if(!cardModal.classList.contains('open')||cardEditing)return;
+      requestAnimationFrame(function(){
+        if(cardEditing)return;
+        var prev=document.querySelector('.card-modal-preview');
+        if(!prev||!qcard||!cardFitWrap)return;
+        var availW=prev.clientWidth-6,availH=prev.clientHeight-6;
+        var natW=qcard.offsetWidth,natH=qcard.offsetHeight;
+        if(!natW||!natH||availW<=0||availH<=0){cardFitWrap.style.transform='none';return;}
+        var scale=Math.min(1,availW/natW,availH/natH);
+        if(scale<MIN_FIT_SCALE)scale=MIN_FIT_SCALE;
+        cardFitWrap.style.transform=(scale<0.995)?('scale('+scale+')'):'none';
+      });
+    }
+    function pauseFitForEditing(){cardEditing=true;if(cardFitWrap)cardFitWrap.style.transform='none';}
+    function resumeFitAfterEditing(){cardEditing=false;fitCardPreview();}
+    cardBody.addEventListener('focus',pauseFitForEditing);
+    cardBody.addEventListener('blur',resumeFitAfterEditing);
+    document.getElementById('cardNote').addEventListener('focus',pauseFitForEditing);
+    document.getElementById('cardNote').addEventListener('blur',resumeFitAfterEditing);
+    var fitT=null,lastInnerW=window.innerWidth;
+    window.addEventListener('resize',function(){
+      /* ظهور لوحة مفاتيح الجوال يغيّر الارتفاع فقط دون العرض؛ نتجاهل هذه الحالة كي لا تُصغَّر
+         البطاقة أكثر بسبب الكيبورد فحسب */
+      var w=window.innerWidth;if(Math.abs(w-lastInnerW)<5)return;lastInnerW=w;
+      if(fitT)clearTimeout(fitT);fitT=setTimeout(fitCardPreview,120);
+    });
+    function recalcLen(){var note=document.getElementById('cardNote');
       var len=(cardBody.textContent||'').length+(note.textContent||'').length;
       var qc=document.getElementById('qcard');qc.classList.remove('len-l','len-xl');
-      if(len>560)qc.classList.add('len-xl');else if(len>300)qc.classList.add('len-l');
-      pill.style.display='none';ready().then(function(){cardModal.classList.add('open');preRenderCard();});});
+      if(len>560)qc.classList.add('len-xl');else if(len>300)qc.classList.add('len-l');}
+    /* ---- تطبيع الأرقام: أي رقم لاتيني يُكتب أو يُلصق يتحول فورًا لرقم عربي هندي، لاتساق الشكل ولمنع
+       مشاكل اتجاه الأقواس والعلامات الناتجة عن خلط الأرقام اللاتينية داخل نصّ عربيّ (RTL) ---- */
+    function arabizeDigitsStr(s){return String(s).replace(/[0-9]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[+d];});}
+    function arabizeEditableDigits(el){
+      if(!el)return;
+      var sel=document.getSelection(),sc=null,so=0,ec=null,eo=0,hadSel=false;
+      if(sel&&sel.rangeCount&&el.contains(sel.anchorNode)){
+        var rg=sel.getRangeAt(0);sc=rg.startContainer;so=rg.startOffset;ec=rg.endContainer;eo=rg.endOffset;hadSel=true;
+      }
+      var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),n,changed=false;
+      while(n=walker.nextNode()){if(/[0-9]/.test(n.data)){n.data=arabizeDigitsStr(n.data);changed=true;}}
+      if(changed&&hadSel){try{var r=document.createRange();r.setStart(sc,so);r.setEnd(ec,eo);sel.removeAllRanges();sel.addRange(r);}catch(e){}}
+    }
+    function arabizeInputDigits(inp){
+      var pos=inp.selectionStart,before=inp.value,after=arabizeDigitsStr(before);
+      if(after!==before){inp.value=after;try{inp.setSelectionRange(pos,pos);}catch(e){}}
+    }
+    /* لصق نص خام فقط داخل الحقول القابلة للتحرير، حتى لا يُدخل المستخدم تنسيقًا غريبًا */
+    function plainPaste(e){e.preventDefault();var t=(e.clipboardData||window.clipboardData).getData('text/plain');document.execCommand('insertText',false,t);arabizeEditableDigits(e.currentTarget);}
+    cardBody.addEventListener('paste',plainPaste);
+    document.getElementById('cardNote').addEventListener('paste',plainPaste);
+    var editT=null;
+    function onCardEdit(){if(editT)clearTimeout(editT);editT=setTimeout(function(){recalcLen();preRenderCard();fitCardPreview();},350);}
+    cardBody.addEventListener('input',function(){arabizeEditableDigits(cardBody);onCardEdit();});
+    document.getElementById('cardNote').addEventListener('input',function(){arabizeEditableDigits(this);onCardEdit();});
+    /* ---- السورة والآية ---- */
+    var cardSuraSel=document.getElementById('cardSura'),cardAyahInp=document.getElementById('cardAyah'),cardRef=document.getElementById('cardRef'),cardRefText=document.getElementById('cardRefText');
+    (B.suras||[]).forEach(function(s){var o=document.createElement('option');o.value=s.num;o.textContent='سورة '+s.label;cardSuraSel.appendChild(o);});
+    function updateRef(){var sv=+cardSuraSel.value||0,av=(cardAyahInp.value||'').trim();
+      if(!sv){cardRef.setAttribute('data-empty','1');cardRefText.textContent='';return;}
+      var t='سورة '+(suraName[sv]||sv);if(av)t+=' — الآية '+arabizeDigitsStr(av);
+      cardRefText.textContent=t;cardRef.removeAttribute('data-empty');}
+    cardSuraSel.addEventListener('change',function(){updateRef();preRenderCard();fitCardPreview();});
+    cardAyahInp.addEventListener('input',function(){arabizeInputDigits(this);updateRef();onCardEdit();});
     function renderCardCanvas(){return ready().then(function(){
       var live=document.getElementById('qcard');
       var all=[live].concat(Array.prototype.slice.call(live.querySelectorAll('*')));
-      var saved=all.map(function(el){return el.getAttribute('style');});
       var bg2=(getComputedStyle(live).getPropertyValue('--cd-bg2')||'').trim()||'#ffffff';
-      all.forEach(function(el){var s=getComputedStyle(el),tag=el.tagName.toLowerCase();
-        el.style.color=s.color;el.style.borderColor=s.borderColor;el.style.boxShadow='none';
-        if(el===live){el.style.backgroundImage='none';el.style.backgroundColor=bg2;}
-        else{el.style.backgroundColor=s.backgroundColor;el.style.backgroundImage='none';}
-        if(tag==='path'||tag==='circle'||tag==='rect'||tag==='polygon'||tag==='g'||tag==='svg'){if(s.fill&&s.fill!=='none')el.style.fill=s.fill;if(s.stroke&&s.stroke!=='none')el.style.stroke=s.stroke;}
-      });
-      var restored=false;function restore(){if(restored)return;restored=true;all.forEach(function(el,i){if(saved[i]==null)el.removeAttribute('style');else el.setAttribute('style',saved[i]);});}
-      return html2canvas(live,{backgroundColor:bg2,scale:2,useCORS:true,logging:false,onclone:function(){restore();}})
-        .then(function(c){restore();return c;},function(e){restore();throw e;});});}
+      /* نحسب القيم المطلوبة من العنصر الظاهر فعليًا دون لمسه، ونطبّقها لاحقًا على النسخة
+         المستنسخة فقط داخل onclone، حتى لا تظهر أي رمشة على المعاينة أمام المستخدم */
+      var snaps=all.map(function(el){var s=getComputedStyle(el),tag=el.tagName.toLowerCase(),st={color:s.color,borderColor:s.borderColor,boxShadow:'none'};
+        if(el===live){st.backgroundImage='none';st.backgroundColor=bg2;}
+        else{st.backgroundColor=s.backgroundColor;st.backgroundImage='none';}
+        if(tag==='path'||tag==='circle'||tag==='rect'||tag==='polygon'||tag==='g'||tag==='svg'){if(s.fill&&s.fill!=='none')st.fill=s.fill;if(s.stroke&&s.stroke!=='none')st.stroke=s.stroke;}
+        return st;});
+      return html2canvas(live,{backgroundColor:bg2,scale:2,useCORS:true,logging:false,onclone:function(clonedDoc){
+        var cRoot=clonedDoc.getElementById('qcard');if(!cRoot)return;
+        var cWrap=clonedDoc.getElementById('cardFitWrap');if(cWrap)cWrap.style.transform='none';
+        var cAll=[cRoot].concat(Array.prototype.slice.call(cRoot.querySelectorAll('*')));
+        cAll.forEach(function(el,i){var st=snaps[i];if(!st)return;for(var k in st)el.style[k]=st[k];});
+      }});});}
     function preRenderCard(){window.__cardBlob=null;setTimeout(function(){try{renderCardCanvas().then(function(c){c.toBlob(function(b){window.__cardBlob=b;},'image/png');}).catch(function(){});}catch(e){}},120);}
     var qcard=document.getElementById('qcard');
-    var CS={ctheme:'parchment',cframe:'ornate',cfont:'"Amiri",serif',cscale:1,cwood:'#43291a'};
+    var CS={ctheme:'parchment',cframe:'ornate',cfont:'"Amiri",serif',cfontpx:19,cwood:'#43291a',cpattern:'none'};
     try{var _cs=localStorage.getItem('ajt_card');if(_cs)CS=Object.assign(CS,JSON.parse(_cs));}catch(e){}
-    var cardWoodWrap=document.getElementById('cardWoodWrap');
-    function applyCard(){qcard.setAttribute('data-ctheme',CS.ctheme);qcard.setAttribute('data-cframe',CS.cframe);qcard.style.setProperty('--cd-font',CS.cfont);qcard.style.setProperty('--cd-scale',CS.cscale);qcard.style.setProperty('--cd-wood',CS.cwood);
-      var a=document.getElementById('cardTheme'),b=document.getElementById('cardFrame'),c=document.getElementById('cardFont'),wd=document.getElementById('cardWood');if(a)a.value=CS.ctheme;if(b)b.value=CS.cframe;if(c)c.value=CS.cfont;if(wd)wd.value=CS.cwood;
-      if(cardWoodWrap)cardWoodWrap.style.display=(CS.cframe==='luxe'?'':'none');}
+    if(!CS.cfontpx||CS.cfontpx<6||CS.cfontpx>60)CS.cfontpx=19;
+    var cardWoodWrap=document.getElementById('cardWoodWrap'),cardFontRange=document.getElementById('cardFontRange'),cardFontVal=document.getElementById('cardFontVal');
+    function applyCard(){qcard.setAttribute('data-ctheme',CS.ctheme);qcard.setAttribute('data-cframe',CS.cframe);qcard.setAttribute('data-cpattern',CS.cpattern);qcard.style.setProperty('--cd-font',CS.cfont);qcard.style.setProperty('--cd-fontpx',CS.cfontpx+'px');qcard.style.setProperty('--cd-wood',CS.cwood);
+      var a=document.getElementById('cardTheme'),b=document.getElementById('cardFrame'),c=document.getElementById('cardFont'),wd=document.getElementById('cardWood'),pt=document.getElementById('cardPattern');if(a)a.value=CS.ctheme;if(b)b.value=CS.cframe;if(c)c.value=CS.cfont;if(wd)wd.value=CS.cwood;if(pt)pt.value=CS.cpattern;
+      if(cardWoodWrap)cardWoodWrap.style.display=(CS.cframe==='luxe'?'':'none');
+      if(cardFontRange)cardFontRange.value=CS.cfontpx;if(cardFontVal)cardFontVal.textContent=arabizeDigitsStr(CS.cfontpx);}
     function saveCard(){try{localStorage.setItem('ajt_card',JSON.stringify(CS));}catch(e){}}
     applyCard();
-    document.getElementById('cardTheme').addEventListener('change',function(){CS.ctheme=this.value;applyCard();saveCard();preRenderCard();});
-    document.getElementById('cardFrame').addEventListener('change',function(){CS.cframe=this.value;applyCard();saveCard();preRenderCard();});
-    document.getElementById('cardFont').addEventListener('change',function(){CS.cfont=this.value;applyCard();saveCard();preRenderCard();});
-    document.getElementById('cardWood').addEventListener('change',function(){CS.cwood=this.value;applyCard();saveCard();preRenderCard();});
-    function setScale(v){CS.cscale=Math.max(.7,Math.min(1.7,Math.round(v*10)/10));applyCard();saveCard();preRenderCard();}
-    document.getElementById('cardFontInc').addEventListener('click',function(){setScale((CS.cscale||1)+0.1);});
-    document.getElementById('cardFontDec').addEventListener('click',function(){setScale((CS.cscale||1)-0.1);});
+    document.getElementById('cardTheme').addEventListener('change',function(){CS.ctheme=this.value;applyCard();saveCard();preRenderCard();fitCardPreview();});
+    document.getElementById('cardFrame').addEventListener('change',function(){CS.cframe=this.value;applyCard();saveCard();preRenderCard();fitCardPreview();});
+    document.getElementById('cardFont').addEventListener('change',function(){CS.cfont=this.value;applyCard();saveCard();preRenderCard();fitCardPreview();});
+    document.getElementById('cardWood').addEventListener('change',function(){CS.cwood=this.value;applyCard();saveCard();preRenderCard();fitCardPreview();});
+    document.getElementById('cardPattern').addEventListener('change',function(){CS.cpattern=this.value;applyCard();saveCard();preRenderCard();fitCardPreview();});
+    /* حجم الخط: تدرّج حرّ من 6 إلى 60 بكسل، بلا أي تكبير/تصغير تلقائي يفرضه طول النص —
+       يبقى القرار كاملًا للمستخدم عبر الشريط أو زرّي أ−/أ+ */
+    function setFontPx(v){CS.cfontpx=Math.max(6,Math.min(60,Math.round(v)));applyCard();saveCard();preRenderCard();fitCardPreview();}
+    cardFontRange.addEventListener('input',function(){setFontPx(this.value);});
+    document.getElementById('cardFontInc').addEventListener('click',function(){setFontPx((CS.cfontpx||19)+1);});
+    document.getElementById('cardFontDec').addEventListener('click',function(){setFontPx((CS.cfontpx||19)-1);});
     function withBusy(btn,p){var t=btn.innerHTML;btn.disabled=true;btn.innerHTML='⏳ جارٍ التحضير…';return p.then(function(r){btn.innerHTML=t;btn.disabled=false;return r;},function(e){btn.innerHTML=t;btn.disabled=false;throw e;});}
+    function cardFileName(){var t=(cardRefText.textContent||'').trim();return 'بطاقة_'+(t?t.replace(/[\s—]+/g,'_'):'فوائد')+'.png';}
+    function cardShareTitle(){var t=(cardRefText.textContent||'').trim();return 'فائدة من كتاب الاختصار والجمع والتكميل'+(t?(' — '+t):'');}
     var dlBtn=document.getElementById('downloadCard');
-    dlBtn.addEventListener('click',function(){withBusy(dlBtn,renderCardCanvas()).then(function(c){var a=document.createElement('a');a.download='بطاقة_فوائد.png';a.href=c.toDataURL('image/png');a.click();}).catch(function(){alert('تعذّر إنشاء الصورة.');});});
+    dlBtn.addEventListener('click',function(){withBusy(dlBtn,renderCardCanvas()).then(function(c){var a=document.createElement('a');a.download=cardFileName();a.href=c.toDataURL('image/png');a.click();}).catch(function(){alert('تعذّر إنشاء الصورة.');});});
     var shBtn=document.getElementById('shareCard');
     function doShareBlob(blob,canvas){
-      var file=new File([blob],'بطاقة_فوائد.png',{type:'image/png'});
+      var fname=cardFileName(),file=new File([blob],fname,{type:'image/png'});
       try{
-        if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:'فائدة من كتاب الاختصار والجمع والتكميل'}).catch(function(){});return;}
-        if(navigator.share){navigator.share({title:'فائدة من كتاب الاختصار والجمع والتكميل',text:cardBody.textContent}).catch(function(){if(canvas){var a=document.createElement('a');a.download='بطاقة_فوائد.png';a.href=canvas.toDataURL('image/png');a.click();}});return;}
+        if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:cardShareTitle()}).catch(function(){});return;}
+        if(navigator.share){navigator.share({title:cardShareTitle(),text:cardBody.textContent}).catch(function(){if(canvas){var a=document.createElement('a');a.download=fname;a.href=canvas.toDataURL('image/png');a.click();}});return;}
       }catch(e){}
-      var a=document.createElement('a');a.download='بطاقة_فوائد.png';a.href=(canvas?canvas.toDataURL('image/png'):URL.createObjectURL(blob));a.click();
+      var a=document.createElement('a');a.download=fname;a.href=(canvas?canvas.toDataURL('image/png'):URL.createObjectURL(blob));a.click();
       alert('المشاركة المباشرة غير مدعومة في متصفحك، فنُزِّلت الصورة لمشاركتها يدويًّا.');
     }
     shBtn.addEventListener('click',function(){
