@@ -270,7 +270,7 @@ html[data-theme="green"] .btn,html[data-theme="dark"] .btn{color:#1a1208}
 /* شارة السورة والآية */
 .qcard .qc-ref{display:flex;align-items:center;justify-content:center;gap:8px;margin:2px auto 14px;font-family:var(--head-font);
   font-size:calc(var(--cd-fontpx,19px)*0.77);color:var(--cd-title);font-weight:700}
-.qcard .qc-ref .qc-ref-ic{color:var(--cd-accent);font-size:.85em}
+.qcard .qc-ref .qc-ref-ic{color:var(--cd-accent);font-size:.85em;font-family:"UthmanicHafs","Amiri",serif}
 .qcard .qc-ref[data-empty="1"]{display:none}
 /* إتاحة التحرير المباشر للمحتوى */
 .qcard .body[contenteditable="true"],.qcard .cnote[contenteditable="true"]{cursor:text;outline:none;border-radius:6px;transition:box-shadow .15s,background-color .15s;padding:4px 6px;margin:-4px -6px}
@@ -278,8 +278,38 @@ html[data-theme="green"] .btn,html[data-theme="dark"] .btn{color:#1a1208}
 .qcard .body[contenteditable="true"]:focus,.qcard .cnote[contenteditable="true"]:focus{background-color:rgba(0,0,0,.05)}
 .qcard .body[contenteditable="true"]:empty::before{content:"اكتب هنا…";opacity:.45}
 .qcard .body[contenteditable="true"]:focus,.qcard .cnote[contenteditable="true"]:focus{box-shadow:0 0 0 2px var(--cd-frame-soft)}
-.card-edit-hint{text-align:center;font-size:.8rem;color:var(--ink-soft);margin:-4px 0 10px;opacity:.85}
-.card-tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:12px}
+.saadi-body{min-height:120px;max-height:52vh;overflow-y:auto;padding:14px 16px;border:1px solid var(--rule);border-radius:10px;background:var(--paper-soft,rgba(0,0,0,.02));font-family:var(--body-font);line-height:2;font-size:1.02rem;text-align:justify;flex-shrink:0}
+.saadi-body .saadi-hint{color:var(--ink-soft);text-align:center;font-size:.92rem}
+.saadi-body .saadi-err{color:#a33;text-align:center;font-size:.92rem}
+.saadi-body .saadi-loading{color:var(--ink-soft);text-align:center;font-size:.92rem}
+.saadi-source{font-size:.78rem;color:var(--ink-soft);text-align:center;margin:8px 0 0}
+.saadi-net-warn{font-size:.76rem;color:#8a5a00;background:rgba(201,162,75,.14);border:1px solid rgba(201,162,75,.4);border-radius:8px;padding:6px 10px;text-align:center;margin:2px 0 8px;line-height:1.6;flex-shrink:0}
+#saadiModalActions{position:sticky;bottom:-20px;background:var(--paper);padding:12px 0 20px;margin:8px -20px -20px;z-index:5;border-top:1px solid var(--rule)}
+@media (max-width:819px){#saadiModalActions{margin:8px -16px -16px;padding:12px 16px 16px}}
+#saadiModalActions{flex-wrap:wrap}
+#saadiModalActions .btn{flex:1 1 auto;text-align:center;justify-content:center}
+@media (max-width:560px){#saadiModalActions{flex-direction:column}#saadiModalActions .btn{width:100%}}
+
+.qa-ayah{font-family:"UthmanicHafs","Amiri",serif;color:var(--maroon)}
+.ext-tafsir-box{margin-top:12px;padding-top:10px;border-top:1px dashed var(--rule);text-align:center}
+.ext-tafsir-box h4{margin:0 0 6px;font-family:var(--head-font);color:var(--ink-soft);font-size:.85rem;font-weight:700}
+.ext-tafsir-note{font-size:.8rem;color:var(--ink-soft);margin:0 0 8px;line-height:1.6}
+
+.cmp-wrap{display:flex;flex-direction:column;gap:10px}
+.cmp-block{border:1px solid var(--rule);border-radius:10px;padding:10px 12px;background:var(--paper-soft,rgba(0,0,0,.02))}
+.cmp-block h4{margin:0 0 6px;font-family:var(--head-font);color:var(--maroon);font-size:.95rem;display:flex;align-items:center;gap:6px;justify-content:space-between}
+.cmp-block h4 .cmp-net{font-size:.66rem;color:#8a5a00;background:rgba(201,162,75,.18);border-radius:999px;padding:1px 7px;font-weight:400;font-family:var(--body-font)}
+.cmp-block .cmp-text{font-family:var(--body-font);line-height:1.9;font-size:.95rem;text-align:justify}
+.cmp-block .cmp-text p{margin:0 0 8px}
+.cmp-block .cmp-text p:last-child{margin-bottom:0}
+.cmp-block .cmp-empty{color:var(--ink-soft);font-size:.85rem;text-align:center}
+.cmp-block a.cmp-extlink{display:inline-block;margin-top:4px;color:var(--maroon);font-weight:700;text-decoration:underline}
+.cmp-chk{display:flex;align-items:center;gap:6px;cursor:pointer;font-family:var(--head-font);color:var(--maroon);font-size:.95rem}
+.cmp-chk input{width:16px;height:16px;accent-color:var(--maroon);cursor:pointer}
+.cmp-chk input:disabled{cursor:not-allowed}
+.cmp-export-row{border-top:1px dashed var(--rule);padding-top:10px;margin-top:4px;text-align:center}
+.cmp-export-row .ext-fab-status{margin-bottom:8px}
+.card-tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:12px;flex-shrink:0}
 .card-tools label{display:flex;flex-direction:column;gap:3px;font-size:.78rem;color:var(--ink-soft)}
 .card-tools .ex-select{font-size:.88rem;padding:6px 8px}
 .csize-ctrl{display:inline-flex;align-items:center;gap:6px}
@@ -335,6 +365,38 @@ html[data-theme="green"] .legend-fab,html[data-theme="dark"] .legend-fab{color:#
   box-shadow:0 6px 18px var(--shadow);display:flex;align-items:center;justify-content:center;contain:layout paint;touch-action:manipulation}
 html[data-theme="green"] .help-fab,html[data-theme="dark"] .help-fab{color:#1a1208}
 @media print{.help-fab,#howModal{display:none!important}}
+.tafsir-fab{position:fixed;z-index:58;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);right:16px;width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(180deg,var(--maroon),var(--maroon-deep));color:#F6E6C8;border:2px solid var(--gold);font-size:1.5rem;cursor:pointer;
+  box-shadow:0 6px 18px var(--shadow);display:flex;align-items:center;justify-content:center;contain:layout paint;touch-action:manipulation;
+  animation:tafsirFabPulse 2.2s ease-in-out 4}
+@keyframes tafsirFabPulse{0%,100%{box-shadow:0 6px 18px var(--shadow)}50%{box-shadow:0 6px 18px var(--shadow),0 0 0 9px rgba(201,162,75,.32)}}
+html[data-theme="green"] .tafsir-fab,html[data-theme="dark"] .tafsir-fab{color:#1a1208}
+.tafsir-fab-badge{position:absolute;top:-5px;left:-6px;background:var(--gold);color:#3a2410;font-size:.6rem;font-weight:800;border-radius:999px;padding:2px 6px;line-height:1;border:1px solid var(--maroon)}
+.tafsir-fab-panel{position:fixed;z-index:59;bottom:calc(env(safe-area-inset-bottom,0px) + 78px);right:16px;width:min(84vw,270px);
+  max-height:min(70vh,520px);overflow-y:auto;
+  background:var(--paper);border:1px solid var(--gold);border-radius:12px;box-shadow:0 12px 34px var(--shadow);padding:12px;
+  contain:layout paint style;opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;transition:opacity .15s ease,transform .15s ease,visibility .15s;
+  display:flex;flex-direction:column;gap:7px}
+.tafsir-fab-panel.show{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.tafsir-fab-panel .tfp-head{font-family:var(--head-font);color:var(--maroon);font-weight:700;text-align:center;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:2px}
+.tafsir-fab-panel button{width:100%;text-align:right;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:9px 11px;font-family:var(--body-font);font-size:.86rem;color:var(--ink);cursor:pointer}
+.tafsir-fab-panel button:hover{background:rgba(0,0,0,.05)}
+.tafsir-fab-panel .tfp-note{font-size:.7rem;color:var(--ink-soft);text-align:center;margin-top:2px;line-height:1.5}
+@media print{.tafsir-fab,.tafsir-fab-panel{display:none!important}}
+.tafsir-fab.ext-fab{bottom:calc(env(safe-area-inset-bottom,0px) + 78px);background:linear-gradient(180deg,#2b5c4a,#1c3f33);animation-delay:.3s}
+.tafsir-fab-panel.ext-fab-panel{bottom:calc(env(safe-area-inset-bottom,0px) + 140px);width:min(92vw,320px)}
+
+.ext-tafsir-hint{font-size:.78rem;color:var(--ink-soft);text-align:center;margin:10px 0 0;line-height:1.6}
+.ext-fab-picker{display:flex;gap:6px;margin:2px 0 8px;flex-shrink:0}
+.ext-fab-picker select{flex:1 1 auto;min-width:0}
+.ext-fab-picker input{flex:0 0 84px}
+.ext-fab-linkrow{display:flex;gap:6px;align-items:stretch;flex-shrink:0}
+.ext-fab-opt{font-family:var(--body-font);font-size:.8rem;padding:8px 8px;border-radius:8px;border:1.5px solid var(--rule);
+  background:var(--paper);color:var(--ink);cursor:pointer;flex:1 1 auto;text-align:center}
+.ext-fab-opt:hover{background:rgba(0,0,0,.05)}
+.ext-fab-opt-icon{flex:0 0 40px;font-size:1rem;padding:8px 4px}
+.ext-fab-status{font-size:.76rem;color:var(--ink-soft);text-align:center;margin:0 0 4px;line-height:1.5;flex-shrink:0}
+.ext-fab-status.ok{color:var(--maroon);font-weight:700}
 .how-video{position:relative;background:#1d1410 center/cover no-repeat;border:1px solid var(--gold);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;margin-bottom:8px;overflow:hidden}
 .how-video iframe{width:100%;height:100%;border:0}
 .how-play{position:absolute;inset:0;width:100%;height:100%;border:0;cursor:pointer;background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.15));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.7)}
@@ -410,27 +472,27 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
 </head>
 <body>
 <div class="topbar">
-  <div class="tb-side tb-start"><button class="tb-btn icon menu-toggle" id="menuBtn" title="الفهرس">☰</button></div>
+  <div class="tb-side tb-start"><button class="tb-btn icon menu-toggle" id="menuBtn" title="الفهرس" aria-label="فتح الفهرس">☰</button></div>
   <div class="brand" title="الاختصار والجمع والتكميل، اختصار تفسير غريب القرآن لابن قتيبة مع جمع أقواله في التفسير من كتبه الأخرى ثم إكمال مواضع التفسير من تفسير جامع البيان للطبري، اختصر وجمع وكمل: كليب بن أحمد بن ضيف الله الزهراني، غفر الله له ولوالديه وزوجته وأصلح له في ذريته.">
     <b>الاختصار والجمع والتكميل</b>
     <span>اختصار تفسير غريب القرآن لابن قتيبة، وجمع أقواله من كتبه، وإكماله من تفسير الطبري — كليب بن أحمد الزهراني</span>
   </div>
   <div class="tb-side tb-end">
     <div class="search-wrap"><span class="sicon">🔍</span><input id="searchInput" type="search" placeholder="ابحث في الكتاب…" autocomplete="off"><button class="search-opts-btn" id="searchOptsBtn" type="button" title="خيارات البحث">⚙</button><button class="search-close" id="searchClose" type="button" title="إغلاق البحث">✕</button></div>
-    <button class="tb-btn icon search-toggle" id="searchToggle" title="بحث">🔍</button>
-    <button class="tb-btn icon" id="bookmarkBtn" title="مواضع التوقف">🔖</button>
-    <button class="tb-btn icon" id="settingsBtn" title="الإعدادات والمظهر">⚙️</button>
+    <button class="tb-btn icon search-toggle" id="searchToggle" title="بحث" aria-label="فتح البحث">🔍</button>
+    <button class="tb-btn icon" id="bookmarkBtn" title="مواضع التوقف" aria-label="مواضع التوقف المحفوظة">🔖</button>
+    <button class="tb-btn icon" id="settingsBtn" title="الإعدادات والمظهر" aria-label="الإعدادات والمظهر">⚙️</button>
     <button class="tb-btn" id="printBtn" title="طباعة وتصدير">🖨️<span class="btn-text"> طباعة/تصدير</span></button>
   </div>
 </div>
 <div class="shell">
   <nav class="sidebar" id="sidebar">
     <div class="side-tools">
-      <button class="side-tool" id="btnTabTafsir">📑 تفسير الطبري (بالآيات)</button>
+      <button class="side-tool" id="btnTabTafsir">📑 تفسير الطبري — بالآيات</button>
       <button class="side-tool" id="btnTabChoices">⭐ اختيارات الطبري</button>
     </div>
     <h4>📖 محتويات الكتاب</h4><div id="tocSections"></div>
-    <h4>۞ فهرس السور (١١٤)</h4><div id="tocSuras"></div>
+    <h4>۞ فهرس السور — ١١٤</h4><div id="tocSuras"></div>
   </nav>
   <div class="main"><div class="reader" id="reader"><div class="empty-note">…جارٍ تحميل الكتاب، يرجى الانتظار قليلًا</div></div></div>
 </div>
@@ -439,10 +501,27 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
 <div class="resume-bar" id="resumeBar">
   <span class="resume-txt" id="resumeTxt"></span>
   <button class="resume-go" id="resumeGo">متابعة ↩</button>
-  <button class="resume-x" id="resumeX" title="إغلاق">✕</button>
+  <button class="resume-x" id="resumeX" title="إغلاق" aria-label="إغلاق شريط المتابعة">✕</button>
 </div>
-<button class="legend-fab" id="legendFab" title="دليل الألوان">🎨</button>
-<button class="help-fab" id="helpFab" title="كيف يعمل التطبيق">؟</button>
+<button class="legend-fab" id="legendFab" title="دليل الألوان" aria-label="عرض دليل الألوان">🎨</button>
+<button class="help-fab" id="helpFab" title="كيف يعمل التطبيق" aria-label="كيف يعمل التطبيق">؟</button>
+<button class="tafsir-fab" id="tafsirFab" title="تفسير ابن سعدي" aria-label="فتح تفسير ابن سعدي">📖<span class="tafsir-fab-badge">السعدي</span></button>
+<button class="tafsir-fab ext-fab" id="extTafsirFab" title="تفاسير خارجية أخرى" aria-label="فتح قائمة التفاسير الخارجية">🌐<span class="tafsir-fab-badge">خارجي</span></button>
+<div class="tafsir-fab-panel ext-fab-panel" id="extTafsirFabPanel">
+  <div class="tfp-head">تفاسير خارجية (quran.com)</div>
+  <div class="ext-fab-linkrow">
+    <button type="button" id="extUseCurrent" class="ext-fab-opt">🔗 ربط بالآية المظلَّلة في القارئ</button>
+    <button type="button" id="extTogglePicker" class="ext-fab-opt ext-fab-opt-icon" title="اختيار سورة وآية مستقلة" aria-label="اختيار سورة وآية مستقلة">📌</button>
+  </div>
+  <div class="ext-fab-picker" id="extFabPicker" style="display:none">
+    <select id="extFabSura" class="ex-select" aria-label="اختر السورة"></select>
+    <input type="text" inputmode="numeric" id="extFabAyah" class="ex-select" placeholder="رقم الآية" aria-label="رقم الآية">
+  </div>
+  <p class="ext-fab-status" id="extFabStatus">لم تُحدَّد آية بعد.</p>
+  <button type="button" class="btn" id="extOpenBtn" style="display:block;width:100%;box-sizing:border-box;text-align:center;margin-top:2px">🌐 فتح تفاسير الآية في quran.com ↗</button>
+  <p class="tfp-note">⚠️ يفتح في تبويب جديد ويحتاج اتصالًا بالإنترنت. ستجد هناك تبويبات لاختيار أيّ تفسير تريده — ابن عاشور، الجلالين، القرطبي، ابن كثير، وغيرها.</p>
+</div>
+
 <div class="modal" id="marksModal"><div class="modal-inner">
   <h3>🔖 مواضع التوقف</h3>
   <button class="btn" id="saveMarkBtn" style="width:100%">➕ احفظ المكان الحالي الآن</button>
@@ -455,13 +534,17 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
   <a class="how-yt" id="howYt" href="https://youtu.be/sIUGkuxrYik" target="_blank" rel="noopener">أو شاهد الفيديو على يوتيوب مباشرةً ↗</a>
   <ul class="how-list">
     <li><b>☰ الفهرس:</b> اضغط الأسطر الثلاثة أعلى اليمين لفتح قائمة السور والأقسام، واضغط أيّ عنوان للانتقال إليه. وفي أعلى الفهرس زرّا «تفسير الطبري» و«اختيارات الطبري» مرتّبَين بالسور.</li>
-    <li><b>🔍 البحث:</b> على الجوال اضغط أيقونة البحث ليظهر شريط البحث، واكتب كلمةً للوصول إلى مواضعها. واضغط الترس ⚙ بجواره لاختيار نوع المطابقة (نصّ الكلمة أو ما تصرّف عنها) والنطاق (الآيات/الشرح/الحواشي) والتشكيل.</li>
+    <li><b>🔍 البحث:</b> على الجوال اضغط أيقونة البحث ليظهر شريط البحث، واكتب كلمةً للوصول إلى مواضعها. واضغط الترس ⚙ بجواره لاختيار نوع المطابقة — نصّ الكلمة أو ما تصرّف عنها — والنطاق: الآيات أو الشرح أو الحواشي، والتشكيل.</li>
     <li><b>⚙️ الإعدادات:</b> غيّر المظهر، ونوع خط النص والعناوين، وحجم الخط وتباعد الأسطر.</li>
-    <li><b>🪪 بطاقة فائدة:</b> ظلّل أيّ مقطع من النصّ، فيظهر فورًا <b>شريط أعلى الشاشة</b> فيه «🪪 تصدير بطاقة» و«⧉ نسخ». اضغط «تصدير بطاقة» لتُنشئ بطاقةً أنيقة للمقطع (مع حاشيته إن وُجدت)، ويمكنك تغيير سمتها وإطارها وخطّها وحجمه، ثمّ تنزيلها صورةً أو مشاركتها.</li>
+    <li><b>🪪 بطاقة فائدة:</b> ظلّل أيّ مقطع من النصّ، فيظهر فورًا <b>شريط أعلى الشاشة</b> فيه «🪪 تصدير بطاقة» و«⧉ نسخ». اضغط «تصدير بطاقة» لتُنشئ بطاقةً أنيقة للمقطع مع حاشيته إن وُجدت، ويمكنك تغيير سمتها وإطارها وخطّها وحجمه، ثمّ تنزيلها صورةً أو مشاركتها.</li>
     <li><b>🔖 حفظ مكان التوقّف:</b> اضغط زرّ 🔖 في الشريط العلوي ثمّ «احفظ المكان الحالي الآن» لحفظ موضع قراءتك مع تاريخه ووقته، ويمكنك تسميته بملاحظة. تظهر مواضعك المحفوظة في القائمة فتضغط أيًّا منها للعودة إليه. ويحفظ التطبيق آخر موضع تلقائيًّا، فيعرض لك «متابعة من حيث توقّفت» عند إعادة فتحه.</li>
     <li><b>🎨 دليل الألوان:</b> يوضّح مصادر النص بحسب لونه.</li>
     <li><b>الحواشي:</b> اضغط رقم الحاشية الصغير لعرض نصّها.</li>
     <li><b>🖨️ طباعة/تصدير:</b> اطبع الكتاب أو سورةً أو جزءًا، أو صدّره Word.</li>
+    <li><b>📖 كرة «تفسير ابن سعدي»:</b> كرة عائمة حمراء أسفل يمين الشاشة. عند فتحها اختر أحد الخيارين: «🔗 ربط بالآية المظلَّلة في القارئ» — يقرأ الآية من النصّ الذي ظلَّلته بإصبعك في الكتاب — أو «📌» لاختيار السورة والآية يدويًّا. بمجرد التحديد يظهر <b>تلقائيًّا</b> تفسير السعدي لها، يُجلب من الإنترنت ولا يعمل بلا اتصال بالشبكة. في الشريط السفلي الثابت للنافذة، ولا يحتاج نزولًا لرؤيته، ثلاثة أزرار دائمة الظهور: «⚖️ مقارنة مع الطبري وابن قتيبة» يعرض الثلاثة معًا، إذ ابن قتيبة والطبري من هذا الكتاب دون إنترنت، و«🪪 تصدير بطاقة بما تمّ اختياره» بطاقة قابلة للتخصيص الكامل بزخرفتها وإطارها وخطّها وألوانها، تختار فيها تفسيرًا واحدًا أو أكثر لتضمينه، و«إغلاق».</li>
+    <li><b>🌐 كرة «تفاسير خارجية»:</b> كرة عائمة خضراء فوق كرة تفسير ابن سعدي مباشرة، بنفس أسلوب التحديد — ربط بالمظلَّلة أو دبوس يدوي. زرّها الوحيد «فتح تفاسير الآية في quran.com ↗» ينقلك لصفحة الآية هناك حيث تختار بنفسك من بين عشرات التفاسير المتاحة — ابن عاشور، الجلالين، القرطبي، ابن كثير، وغيرها — عبر تبويباتها، إذ لا يوجد مصدر بيانات مفتوح يتيح عرضها داخل التطبيق مباشرة.</li>
+    <li><b>ترقيم الحاشية في البطاقة:</b> إذا كان المقطع المصدَّر يحتوي حاشية، تُرقَّم تلقائيًّا برقم خاصّ بالبطاقة — ١، ٢، ٣ وهكذا — يطابق ترتيب ظهورها فيها، لا برقمها الأصلي في الكتاب.</li>
+    <li><b>♿ إمكانية الوصول وذوو الإعاقة:</b> التطبيق متجاوب مع جميع أحجام شاشات الجوالات، صغيرة كانت أو كبيرة، ويعمل بسلاسة على الأجهزة اللوحية والحواسيب. أُضيفت أوصاف نصّية aria-label لجميع الأزرار الأيقونية ليتمكّن مستخدمو قارئات الشاشة، كالمكفوفين، من التعرّف عليها والتنقّل بينها. مع ذلك، لا يزال استخدام لوحة المفاتيح أو مكبّر الشاشة وسيلة مساعدة إضافية مفيدة، ونرحّب بأي ملاحظة لتحسين التجربة أكثر لذوي الإعاقة.</li>
   </ul>
   <div class="how-contact">
     <div class="how-contact-h">للتواصل والملاحظات</div>
@@ -526,6 +609,27 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
   <div id="tabariList" class="card-scroll" style="flex-direction:column;align-items:stretch;max-height:62vh"></div>
   <div class="modal-actions"><button class="btn" id="tabariExport">⬇️ تصدير (Word)</button><button class="btn ghost" data-close>إغلاق</button></div>
 </div></div>
+<div class="modal" id="saadiModal"><div class="modal-inner">
+  <h3>تفسير ابن سعدي</h3>
+  <div class="ext-fab-linkrow">
+    <button type="button" id="saadiUseCurrent" class="ext-fab-opt">🔗 ربط بالآية المظلَّلة في القارئ</button>
+    <button type="button" id="saadiTogglePicker" class="ext-fab-opt ext-fab-opt-icon" title="اختيار سورة وآية مستقلة" aria-label="اختيار سورة وآية مستقلة">📌</button>
+  </div>
+  <div class="ext-fab-picker" id="saadiPicker" style="display:none">
+    <select id="saadiSura" class="ex-select" aria-label="اختر السورة"></select>
+    <input type="text" inputmode="numeric" id="saadiAyah" class="ex-select" placeholder="رقم الآية" aria-label="رقم الآية">
+  </div>
+  <p class="ext-fab-status" id="saadiPickStatus">لم تُحدَّد آية بعد.</p>
+  <p class="saadi-net-warn">⚠️ تفسير السعدي يُجلب مباشرة من الإنترنت ويُعرض داخل التطبيق، ولذلك لا يعمل بلا اتصال بالشبكة.</p>
+  <div class="saadi-body" id="saadiBody">
+    <p class="saadi-hint">حدِّد آية أعلاه — بالربط بالمظلَّلة أو بالاختيار اليدوي 📌 — ليظهر هنا تفسير السعدي لها تلقائيًّا.</p>
+  </div>
+  <div class="modal-actions" id="saadiModalActions">
+    <button class="btn ghost" id="compareGo" type="button">⚖️ مقارنة مع الطبري وابن قتيبة</button>
+    <button class="btn" id="cmpExportBtnFixed" type="button" style="display:none">🪪 تصدير بطاقة بما تمّ اختياره</button>
+    <button class="btn ghost" data-close>إغلاق</button>
+  </div>
+</div></div>
 <div class="modal" id="cardModal"><div class="modal-inner">
   <h3>بطاقة المقطع المظلَّل</h3>
   <div class="card-modal-layout">
@@ -578,7 +682,7 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
       <span class="csize-ctrl"><button type="button" id="cardFontDec" title="تصغير">أ−</button><input type="range" id="cardFontRange" min="6" max="60" step="1" value="19"><span class="csize-val" id="cardFontVal">١٩</span><button type="button" id="cardFontInc" title="تكبير">أ+</button></span></label>
   </div>
   <div class="card-tools">
-    <label>السورة (اختياري)
+    <label>السورة — اختياري
       <select id="cardSura" class="ex-select"><option value="0">بلا</option></select></label>
     <label>رقم الآية
       <input type="text" inputmode="numeric" id="cardAyah" class="ex-select" placeholder="مثال: ٢٥٥" style="width:100px"></label>
@@ -610,7 +714,7 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
 <div class="modal" id="settingsModal"><div class="modal-inner">
   <h3>⚙️ المظهر والخط</h3>
   <div class="set-group">
-    <label>السِّمة (المظهر)</label>
+    <label>السِّمة — المظهر</label>
     <div class="opt-row" id="themeOpts">
       <div class="opt" data-theme="parchment"><span class="swatch" style="background:#FBF6EA"></span>ورقي</div>
       <div class="opt" data-theme="sepia"><span class="swatch" style="background:#F1E6CE"></span>بُنّي فاتح</div>
@@ -619,7 +723,7 @@ button,.toc-item,.opt,.tb-btn{touch-action:manipulation;-webkit-tap-highlight-co
     </div>
   </div>
   <div class="set-group">
-    <label>نوع خط النصّ (الشرح)</label>
+    <label>نوع خط النصّ — الشرح</label>
     <div class="opt-row" id="fontOpts">
       <div class="opt" data-font='"Amiri",serif' style="font-family:'Amiri',serif">أميري</div>
       <div class="opt" data-font='"Scheherazade","Amiri",serif' style="font-family:'Scheherazade',serif">شهرزاد</div>
@@ -1006,14 +1110,14 @@ window.__BOOK_B64__ = "H4sIABvSO2oC/+y9a29jWZYl9leuw19sYEIdke+U0wV4Big3MB57Bj3+l
       if(!cnt)tabList.innerHTML='<div class="empty-note">لا مواضع مطابقة.</div>';}
     var tabT2=null;tabSura.addEventListener('change',renderTab);tabSrc.addEventListener('change',renderTab);
     tabSearch.addEventListener('input',function(){clearTimeout(tabT2);tabT2=setTimeout(renderTab,250);});
-    function openTab(kind){tabKind=kind;tabSrcWrap.style.display=(kind==='tafsir'?'':'none');tabTitle.textContent=(kind==='tafsir'?'تفسير الطبري (بحسب الآيات)':'اختيارات الطبري (بحسب الآيات)');renderTab();tabModal.classList.add('open');tabList.scrollTop=0;}
+    function openTab(kind){tabKind=kind;tabSrcWrap.style.display=(kind==='tafsir'?'':'none');tabTitle.textContent=(kind==='tafsir'?'تفسير الطبري — بحسب الآيات':'اختيارات الطبري — بحسب الآيات');renderTab();tabModal.classList.add('open');tabList.scrollTop=0;}
     document.getElementById('btnTabTafsir').addEventListener('click',function(){if(window.__closeSidebar)window.__closeSidebar();openTab('tafsir');});
     document.getElementById('btnTabChoices').addEventListener('click',function(){if(window.__closeSidebar)window.__closeSidebar();openTab('choices');});
     function filteredTab(){var arr=(tabKind==='tafsir'?TAB.tafsir:TAB.choices),fs=parseInt(tabSura.value,10)||0,src=(tabKind==='tafsir'?tabSrc.value:'all'),qq=normNo(tabSearch.value.trim()),out=[];
       for(var j=0;j<arr.length;j++){var x=arr[j];if(fs&&x.s!==fs)continue;if(src!=='all'&&x.src!==src)continue;var t=tabText(x);if(qq&&normNo(t).indexOf(qq)<0)continue;out.push({x:x,t:t});}return out;}
     document.getElementById('tabariExport').addEventListener('click',function(){
       var rows=filteredTab();if(!rows.length){alert('لا مواضع للتصدير.');return;}
-      var ttl=(tabKind==='tafsir'?'تفسير الطبري (بحسب الآيات)':'اختيارات الطبري (بحسب الآيات)');
+      var ttl=(tabKind==='tafsir'?'تفسير الطبري — بحسب الآيات':'اختيارات الطبري — بحسب الآيات');
       var h='<html xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><style>'
         +'@page{margin:2cm}body{font-family:"Traditional Arabic","Amiri",serif;direction:rtl;text-align:right;font-size:14pt;line-height:1.9}'
         +'h1{color:#7B1E22;text-align:center;font-size:20pt}h2{color:#7B1E22;border-bottom:1px solid #C9A24B;font-size:16pt;margin-top:18pt}'
@@ -1036,6 +1140,238 @@ window.__BOOK_B64__ = "H4sIABvSO2oC/+y9a29jWZYl9leuw19sYEIdke+U0wV4Big3MB57Bj3+l
     document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(e){e.target.closest('.modal').classList.remove('open');});});
     document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open');});});
 
+    /* ---- تفاسير الآية: السعدي يُجلب حيًّا كنصّ صافٍ (مصدر JSON نظيف) ويُعرض داخل التطبيق.
+       بقية التفاسير (ابن عاشور وغيره) لا يوجد لها مصدر بيانات مفتوح موثوق بلا مفاتيح API،
+       فتُعرض كقائمة روابط تحت عنوان "تفسير خارجي" تفتح كل واحدة في تبويب جديد على نفس
+       صفحة الآية في quran.com (وهو الموقع الذي تظهر فيه أصلاً هذه التفاسير). المقارنة تجمع
+       ابن قتيبة والطبري (من هذا الكتاب دون إنترنت) مع السعدي (من الشبكة). ---- */
+    var saadiModal=document.getElementById('saadiModal'),saadiSuraSel=document.getElementById('saadiSura'),
+        saadiAyahInp=document.getElementById('saadiAyah'),saadiBodyEl=document.getElementById('saadiBody'),
+        compareGoBtn=document.getElementById('compareGo'),
+        saadiPicker=document.getElementById('saadiPicker'),saadiPickStatus=document.getElementById('saadiPickStatus'),
+        extFabSura=document.getElementById('extFabSura'),extFabAyah=document.getElementById('extFabAyah');
+    (B.suras||[]).forEach(function(s){var o=document.createElement('option');o.value=s.num;o.textContent='سورة '+s.label;saadiSuraSel.appendChild(o);});
+    (B.suras||[]).forEach(function(s){var o=document.createElement('option');o.value=s.num;o.textContent='سورة '+s.label;extFabSura.appendChild(o);});
+    var saadiReqId=0;
+    function readExtFabSuraAyah(){
+      var sv=+extFabSura.value||0;
+      var raw=(extFabAyah.value||'').trim().replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);});
+      return {sv:sv,av:parseInt(raw,10)};
+    }
+    var extFabStatus=document.getElementById('extFabStatus'),extFabPicker=document.getElementById('extFabPicker');
+    function updateExtFabStatus(){
+      var s=readExtFabSuraAyah();
+      if(s.sv&&s.av){extFabStatus.textContent='الآية المحدَّدة: سورة '+(suraName[s.sv]||s.sv)+' — الآية '+arabizeDigitsStr(s.av);extFabStatus.classList.add('ok');}
+      else{extFabStatus.textContent='لم تُحدَّد آية بعد.';extFabStatus.classList.remove('ok');}
+    }
+    extFabAyah.addEventListener('input',function(){arabizeInputDigits(this);updateExtFabStatus();});
+    extFabSura.addEventListener('change',updateExtFabStatus);
+    /* فهرس عكسي: من رقم الفقرة في الكتاب إلى الآية التي تخصّها، لاستخدامه في تحديد
+       "الآية المظلَّلة" فعليًّا في القارئ بدل الاعتماد على قائمة منسدلة منفصلة */
+    var AYAT_BY_BLOCK={};
+    (function(){var AB=B.ayatBi||{};for(var k in AB){var bi=AB[k];if(AYAT_BY_BLOCK[bi]==null){var p=k.split(':');AYAT_BY_BLOCK[bi]={s:+p[0],a:+p[1]};}}})();
+    function detectHighlightedAyah(){
+      if(!lastRange)return null;
+      var node=lastRange.commonAncestorContainer;
+      var el=(node.nodeType===1)?node:node.parentElement;
+      while(el&&!/^b\d+$/.test(el.id||'')){el=el.parentElement;}
+      if(!el)return null;
+      return AYAT_BY_BLOCK[+el.id.slice(1)]||null;
+    }
+    document.getElementById('extUseCurrent').addEventListener('click',function(){
+      var det=detectHighlightedAyah();
+      if(!det){alert('لم يُعثر على آية مرتبطة بنصّ مظلَّل حاليًا في القارئ. ظلِّل مقطعًا من النصّ أولًا — كما تفعل لتصدير بطاقة — ثم أعد المحاولة، أو استخدم 📌 لاختيار السورة والآية يدويًّا.');return;}
+      extFabSura.value=det.s;extFabAyah.value=arabizeDigitsStr(det.a);
+      extFabPicker.style.display='none';
+      updateExtFabStatus();
+    });
+    document.getElementById('extTogglePicker').addEventListener('click',function(){
+      extFabPicker.style.display=(extFabPicker.style.display==='none')?'flex':'none';
+    });
+    /* أسماء السور الحرفية (بالإنجليزية المحوَّلة) كما يستخدمها موقع quran.com في روابطه؛
+       صفحة "كل التفاسير" هناك تتطلب هذا الاسم تحديدًا ولا تقبل رقم السورة كما في صفحات
+       تفسير بعينه، لذلك لا بدّ من هذا الجدول لتفادي صفحة الخطأ. */
+    var QURAN_COM_SLUGS=['al-fatihah','al-baqarah','ali-imran','an-nisa','al-maidah','al-anam','al-araf','al-anfal','at-tawbah','yunus',
+      'hud','yusuf','ar-rad','ibrahim','al-hijr','an-nahl','al-isra','al-kahf','maryam','taha',
+      'al-anbya','al-hajj','al-muminun','an-nur','al-furqan','ash-shuara','an-naml','al-qasas','al-ankabut','ar-rum',
+      'luqman','as-sajdah','al-ahzab','saba','fatir','ya-sin','as-saffat','sad','az-zumar','ghafir',
+      'fussilat','ash-shuraa','az-zukhruf','ad-dukhan','al-jathiyah','al-ahqaf','muhammad','al-fath','al-hujurat','qaf',
+      'adh-dhariyat','at-tur','an-najm','al-qamar','ar-rahman','al-waqiah','al-hadid','al-mujadila','al-hashr','al-mumtahanah',
+      'as-saf','al-jumuah','al-munafiqun','at-taghabun','at-talaq','at-tahrim','al-mulk','al-qalam','al-haqqah','al-maarij',
+      'nuh','al-jinn','al-muzzammil','al-muddaththir','al-qiyamah','al-insan','al-mursalat','an-naba','an-naziat','abasa',
+      'at-takwir','al-infitar','al-mutaffifin','al-inshiqaq','al-buruj','at-tariq','al-ala','al-ghashiyah','al-fajr','al-balad',
+      'ash-shams','al-layl','ad-duhaa','ash-sharh','at-tin','al-alaq','al-qadr','al-bayyinah','az-zalzalah','al-adiyat',
+      'al-qariah','at-takathur','al-asr','al-humazah','al-fil','quraysh','al-maun','al-kawthar','al-kafirun','an-nasr',
+      'al-masad','al-ikhlas','al-falaq','an-nas'];
+    document.getElementById('extOpenBtn').addEventListener('click',function(){
+      var s=readExtFabSuraAyah();
+      if(!s.sv||!s.av){alert('فضلًا حدِّد السورة والآية أولًا: إمّا بالربط بالآية المظلَّلة في القارئ 🔗، أو بالضغط على 📌 لاختيارها يدويًّا.');return;}
+      var slug=QURAN_COM_SLUGS[s.sv-1];
+      if(!slug){alert('تعذّر تحديد رابط هذه السورة.');return;}
+      window.open('https://quran.com/ar/'+slug+'/'+s.av+'/tafsirs','_blank','noopener');
+    });
+    /* تحويل أقواس اقتباس الآيات { } (وهي الفاصلة الفعلية المستخدمة في نص تفسير السعدي
+       المجلوب) إلى الأقواس الزخرفية الخاصة بالآيات ﴿ ﴾، مع تغليفها بخط يضمن ظهور هذا
+       الرمز النادر بشكله الصحيح (الخط العام للتطبيق لا يدعمه فتظهر أقواس عادية مشوَّهة).
+       يُطبَّق هذا التحويل على النصّ بعد تهريبه (esc) حتى لا يُهرَّب وسم <span> المُدرَج هنا. */
+    function ayahBracketsStyle(escapedText){
+      return String(escapedText).replace(/\{([^}]*)\}/g,function(_,inner){return '<span class="qa-ayah">﴿'+inner+'﴾</span>';});
+    }
+    function fetchSaadiInto(sura,ayah,targetEl,withHeading,onDone){
+      var myReq=++saadiReqId;
+      targetEl.innerHTML='<p class="saadi-loading">⏳ جارٍ جلب التفسير…</p>';
+      var url='https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir/ar-tafseer-al-saddi/'+sura+'/'+ayah+'.json';
+      fetch(url).then(function(r){if(!r.ok)throw new Error('http');return r.json();}).then(function(d){
+        if(myReq!==saadiReqId)return;
+        var txt=(d&&d.text)?String(d.text).trim():'';
+        if(!txt){targetEl.innerHTML='<p class="saadi-err">لا يوجد نصّ تفسير لهذه الآية في هذا المصدر.</p>';if(onDone)onDone('');return;}
+        var safe=ayahBracketsStyle(esc(txt).replace(/\n+/g,'</p><p>'));
+        var head=withHeading?('<div style="text-align:center;font-family:var(--head-font);color:var(--maroon);font-weight:700;margin-bottom:10px">سورة '+(suraName[sura]||sura)+' — الآية '+arabizeDigitsStr(ayah)+'</div>'):'';
+        targetEl.innerHTML=head+'<p>'+safe+'</p>';
+        if(onDone)onDone(safe);
+      }).catch(function(){
+        if(myReq!==saadiReqId)return;
+        targetEl.innerHTML='<p class="saadi-err">تعذّر جلب التفسير. تحقّق من اتصالك بالإنترنت وحاول مجددًا.</p>';
+        if(onDone)onDone('');
+      });
+    }
+    function readSuraAyah(){
+      var sv=+saadiSuraSel.value||0;
+      var raw=(saadiAyahInp.value||'').trim().replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);});
+      return {sv:sv,av:parseInt(raw,10)};
+    }
+    function updateSaadiPickStatus(){
+      var s=readSuraAyah();
+      if(s.sv&&s.av){saadiPickStatus.textContent='الآية المحدَّدة: سورة '+(suraName[s.sv]||s.sv)+' — الآية '+arabizeDigitsStr(s.av);saadiPickStatus.classList.add('ok');}
+      else{saadiPickStatus.textContent='لم تُحدَّد آية بعد.';saadiPickStatus.classList.remove('ok');}
+    }
+    function tabariForAyah(sura,ayah){
+      var out=[];
+      (TAB.tafsir||[]).forEach(function(x){if(x.s===sura&&x.a===ayah)out.push(tabText(x));});
+      (TAB.choices||[]).forEach(function(x){if(x.s===sura&&x.a===ayah)out.push(tabText(x));});
+      return out;
+    }
+    /* ---- بحث ابن قتيبة الحقيقي: يستخدم فهرس B.ayatBi الذي يربط كل آية برقم الفقرة (block)
+       التي تناولها هذا الكتاب فعليًّا، فيجلب نصّها الحقيقي من متن الكتاب مباشرة دون إنترنت.
+       إن لم تكن الآية مفهرسة (لم يتطرّق لها الكتاب) يُعاد null. يُستخدم داخل المقارنة. ---- */
+    function qutaibahForAyah(sura,ayah){
+      var AB=B.ayatBi||{},key=sura+':'+ayah;
+      if(AB[key]==null)return null;
+      var bi=AB[key],blk=B.blocks[bi];
+      if(!blk)return null;
+      var txt=stripTags(blk.html||'').trim();
+      return txt?{text:txt,blockId:'b'+bi}:null;
+    }
+    /* فتح بطاقة مشاركة قابلة للتخصيص كاملًا (زخارف/إطار/خط/حجم/لون/نصّ قابل للتحرير) */
+    function openCardWithSections(sections,sura,ayah){
+      var multi=sections.length>1;
+      var htmlOut=sections.map(function(sec){
+        var body=sec.html?sec.text:('<p>'+esc(sec.text).replace(/\n+/g,'</p><p>')+'</p>');
+        return (multi&&sec.label?'<p style="font-weight:700;color:var(--maroon);margin-top:10px">'+esc(sec.label)+'</p>':'')+body;
+      }).join('');
+      cardBody.innerHTML=htmlOut;
+      var note=document.getElementById('cardNote');note.style.display='none';note.innerHTML='';
+      cardSuraSel.value=sura;cardAyahInp.value=arabizeDigitsStr(ayah);
+      recalcLen();updateRef();
+      arabizeEditableDigits(cardBody);
+      saadiModal.classList.remove('open');
+      ready().then(function(){cardModal.classList.add('open');preRenderCard();fitCardPreview();});
+    }
+    /* عرض تفسير السعدي فورًا كمحتوًى أساسي بمجرد تحديد الآية، مع ربط زر التصدير الثابت
+       بتصدير هذا النصّ وحده افتراضيًّا (ويُستبدل بزر المقارنة إن ضغط المستخدم عليه) */
+    function showSaadiPrimary(sura,ayah){
+      fetchSaadiInto(sura,ayah,saadiBodyEl,true,function(safe){
+        var fixedBtn=document.getElementById('cmpExportBtnFixed');
+        if(safe){
+          fixedBtn.style.display='block';
+          fixedBtn.onclick=function(){openCardWithSections([{label:null,text:'<p>'+safe+'</p>',html:true}],sura,ayah);};
+        }else{fixedBtn.style.display='none';}
+      });
+    }
+    function renderCompare(sura,ayah){
+      var qRes=qutaibahForAyah(sura,ayah);
+      var tabariTexts=tabariForAyah(sura,ayah);
+      var tabariJoined=tabariTexts.length?tabariTexts.map(function(t){return '<p>'+t+'</p>';}).join(''):'';
+      var saadiRaw='';
+      var html='<div class="cmp-wrap">';
+      html+='<div class="cmp-block"><h4><label class="cmp-chk"><input type="checkbox" id="cmpChkS" checked> السعدي <span class="cmp-net">شبكة</span></label></h4><div class="cmp-text" id="cmpSaadiText"><p class="saadi-loading">⏳ جارٍ الجلب…</p></div></div>';
+      html+='<div class="cmp-block"><h4><label class="cmp-chk"><input type="checkbox" id="cmpChkT"'+(tabariTexts.length?' checked':' disabled')+'> الطبري</label></h4><div class="cmp-text">'+(tabariTexts.length?tabariJoined:'<p class="cmp-empty">لا توجد مواضع مستخرجة من الطبري لهذه الآية في هذا الكتاب.</p>')+'</div></div>';
+      html+='<div class="cmp-block"><h4><label class="cmp-chk"><input type="checkbox" id="cmpChkQ"'+(qRes?' checked':' disabled')+'> ابن قتيبة</label></h4><div class="cmp-text">'+(qRes?('<p>'+esc(qRes.text).replace(/\n+/g,'</p><p>')+'</p>'):'<p class="cmp-empty">لا يوجد له كلام في هذه الآية.</p>')+'</div></div>';
+      html+='<p class="ext-fab-status">التفاسير المتاحة محدَّدة تلقائيًّا؛ ألغِ تحديد ما لا تريد تضمينه، ثم اضغط «تصدير بطاقة» أسفل النافذة.</p>';
+      html+='</div>';
+      saadiBodyEl.innerHTML=html;
+      fetchSaadiInto(sura,ayah,document.getElementById('cmpSaadiText'),false,function(t){saadiRaw=t||'';});
+      var fixedBtn=document.getElementById('cmpExportBtnFixed');
+      fixedBtn.style.display='block';
+      fixedBtn.onclick=function(){
+        var sections=[];
+        if(document.getElementById('cmpChkS').checked){
+          if(!saadiRaw){alert('لم يكتمل جلب تفسير السعدي بعد، أو تعذّر جلبه. انتظر قليلًا أو أعد المحاولة.');return;}
+          sections.push({label:'السعدي',text:'<p>'+saadiRaw+'</p>',html:true});
+        }
+        if(tabariTexts.length&&document.getElementById('cmpChkT').checked)sections.push({label:'الطبري',text:tabariJoined,html:true});
+        if(qRes&&document.getElementById('cmpChkQ').checked)sections.push({label:'ابن قتيبة',text:qRes.text,html:false});
+        if(!sections.length){alert('اختر تفسيرًا واحدًا على الأقل من الصناديق أعلاه.');return;}
+        openCardWithSections(sections,sura,ayah);
+      };
+    }
+    function openSaadi(sura,ayah,mode){
+      saadiModal.classList.add('open');
+      document.getElementById('cmpExportBtnFixed').style.display='none';
+      if(sura)saadiSuraSel.value=sura;
+      if(ayah)saadiAyahInp.value=arabizeDigitsStr(ayah);
+      updateSaadiPickStatus();
+      var s=readSuraAyah();
+      if(!s.sv||!s.av){saadiBodyEl.innerHTML='<p class="saadi-hint">حدِّد آية أعلاه — بالربط بالمظلَّلة أو بالاختيار اليدوي 📌 — ليظهر هنا تفسير السعدي لها تلقائيًّا.</p>';return;}
+      if(mode==='compare')renderCompare(s.sv,s.av);
+      else showSaadiPrimary(s.sv,s.av);
+    }
+    document.getElementById('saadiUseCurrent').addEventListener('click',function(){
+      var det=detectHighlightedAyah();
+      if(!det){alert('لم يُعثر على آية مرتبطة بنصّ مظلَّل حاليًا في القارئ. ظلِّل مقطعًا من النصّ أولًا، ثم أعد المحاولة، أو استخدم 📌 لاختيار السورة والآية يدويًّا.');return;}
+      saadiPicker.style.display='none';
+      openSaadi(det.s,det.a);
+    });
+    document.getElementById('saadiTogglePicker').addEventListener('click',function(){
+      saadiPicker.style.display=(saadiPicker.style.display==='none')?'flex':'none';
+    });
+    var saadiPickTimer=null;
+    saadiAyahInp.addEventListener('input',function(){
+      arabizeInputDigits(this);updateSaadiPickStatus();
+      clearTimeout(saadiPickTimer);
+      saadiPickTimer=setTimeout(function(){var s=readSuraAyah();if(s.sv&&s.av)showSaadiPrimary(s.sv,s.av);},350);
+    });
+    saadiSuraSel.addEventListener('change',function(){
+      updateSaadiPickStatus();
+      var s=readSuraAyah();if(s.sv&&s.av)showSaadiPrimary(s.sv,s.av);
+    });
+    compareGoBtn.addEventListener('click',function(){
+      var s=readSuraAyah();
+      if(!s.sv||!s.av){alert('فضلًا حدِّد السورة والآية أولًا: إمّا بالربط بالآية المظلَّلة في القارئ 🔗، أو بالضغط على 📌 لاختيارها يدويًّا.');return;}
+      renderCompare(s.sv,s.av);
+    });
+    /* ---- الكرة العائمة الأولى: تفسير ابن سعدي (تفتح النافذة مباشرة) ---- */
+    var tafsirFab=document.getElementById('tafsirFab');
+    tafsirFab.addEventListener('click',function(){if(window.__closeSidebar)window.__closeSidebar();closeExtTafsirFab();openSaadi();});
+    /* ---- الكرة العائمة الثانية المستقلة: تفاسير خارجية (ابن عاشور وغيره) ---- */
+    var extTafsirFab=document.getElementById('extTafsirFab'),extTafsirFabPanel=document.getElementById('extTafsirFabPanel');
+    function closeExtTafsirFab(){extTafsirFabPanel.classList.remove('show');}
+    extTafsirFab.addEventListener('click',function(e){e.stopPropagation();extTafsirFabPanel.classList.toggle('show');});
+    document.addEventListener('click',function(e){if(extTafsirFabPanel.classList.contains('show')&&!extTafsirFabPanel.contains(e.target)&&e.target!==extTafsirFab)closeExtTafsirFab();});
+    /* رابط سريع من بطاقة المشاركة: يفتح تفسير السعدي مباشرة لنفس السورة/الآية المختارة في البطاقة */
+    if(typeof cardSuraSel!=='undefined'&&cardSuraSel){
+      var saadiFromCardBtn=document.createElement('button');
+      saadiFromCardBtn.type='button';saadiFromCardBtn.className='btn ghost';saadiFromCardBtn.style.marginInlineStart='8px';
+      saadiFromCardBtn.textContent='📖 تفسير ابن سعدي لهذه الآية';
+      saadiFromCardBtn.addEventListener('click',function(){
+        var sv=+cardSuraSel.value||0,av=(cardAyahInp.value||'').trim();
+        if(!sv){alert('اختر السورة أولًا من إعدادات البطاقة.');return;}
+        cardModal.classList.remove('open');
+        openSaadi(sv,av);
+      });
+      cardAyahInp.closest('label').insertAdjacentElement('afterend',saadiFromCardBtn);
+    }
+
     /* ---- selection -> card ---- */
     var pill=document.getElementById('selPill'),lastRange=null,selT=null;
     function showPillNow(){var sel=document.getSelection();if(!sel||sel.isCollapsed||!sel.toString().trim()||!lastRange){pill.style.display='none';return;}
@@ -1055,7 +1391,9 @@ window.__BOOK_B64__ = "H4sIABvSO2oC/+y9a29jWZYl9leuw19sYEIdke+U0wV4Big3MB57Bj3+l
     var cardModal=document.getElementById('cardModal'),cardBody=document.getElementById('cardBody');
     function ready(){try{return Promise.race([document.fonts.ready,new Promise(function(r){setTimeout(r,1200);})]);}catch(e){return Promise.resolve();}}
     document.getElementById('cardBtn').addEventListener('click',function(){if(!lastRange)return;var frag=lastRange.cloneContents();var tmp=document.createElement('div');tmp.appendChild(frag);
-      var ids=[];tmp.querySelectorAll('.fnref').forEach(function(n){var id=n.dataset.fn;if(id&&ids.indexOf(id)<0)ids.push(id);n.remove();});
+      var ids=[];tmp.querySelectorAll('.fnref').forEach(function(n){var id=n.dataset.fn;if(!id){n.remove();return;}
+        var idx=ids.indexOf(id);if(idx<0){idx=ids.length;ids.push(id);}
+        n.textContent=arabizeDigitsStr(String(idx+1));});
       cardBody.innerHTML=tmp.innerHTML;
       Array.prototype.forEach.call(cardBody.querySelectorAll('*'),function(el){
         el.style.contentVisibility='visible';el.style.contain='none';el.style.containIntrinsicSize='auto';
@@ -1064,7 +1402,7 @@ window.__BOOK_B64__ = "H4sIABvSO2oC/+y9a29jWZYl9leuw19sYEIdke+U0wV4Big3MB57Bj3+l
         if(tg==='p'||tg==='div'){el.style.margin='0';el.style.padding='0';el.style.textAlign='center';el.style.lineHeight='inherit';}});
       var note=document.getElementById('cardNote');
       if(ids.length){var h='<span class="cnote-h">الحاشية</span>';
-        ids.forEach(function(id){h+='<div class="cnote-item">'+(B.footnotes[id]||'')+'</div>';});
+        ids.forEach(function(id,i){h+='<div class="cnote-item"><b>'+arabizeDigitsStr(i+1)+'.</b> '+(B.footnotes[id]||'')+'</div>';});
         note.innerHTML=h;note.style.display='block';}
       else{note.style.display='none';note.innerHTML='';}
       recalcLen();
